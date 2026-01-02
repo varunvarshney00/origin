@@ -12,6 +12,7 @@ import {
 } from "./functions";
 import Image from "next/image";
 import { Play } from "lucide-react";
+import { calculateProgress } from "@/lib/utils";
 
 // -----------------------------
 // Main Course Player Component
@@ -176,10 +177,10 @@ export default function CoursePlayer({ initialVideos = [] }: CoursePlayerProps) 
                       <div className="text-xs text-gray-400">Progress</div>
                       <div className="text-lg font-semibold">
                         {/* REPLACED MOCK_VIDEOS and added safe division */}
-                        {Math.round(
-                          (Object.values(watchedMap).filter(Boolean).length /
-                            (initialVideos.length || 1)) * 100
-                        ) || 0}
+                        {calculateProgress(
+                          Object.values(watchedMap).filter(Boolean).length,
+                          initialVideos.length
+                        )}
                         %
                       </div>
                     </div>

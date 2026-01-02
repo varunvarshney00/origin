@@ -4,6 +4,8 @@ import Image from "next/image";
 import Accordion from "@/modules/courses/components/accordion";
 import CheckIcon from "@/modules/courses/components/checkIcon";
 import Link from "next/link";
+import { getUserEnrollmentStatus } from "@/lib/actions/user-course";
+import { EnrollButton } from "@/modules/courses/ui/enroll-button";
 
 type CourseDetailsPageProps = {
   params: Promise<{
@@ -15,6 +17,7 @@ type CourseDetailsPageProps = {
 const CourseDetailPage = async ({ params }: CourseDetailsPageProps) => {
   const { type } = await params;
   const course = await getCourseByType(type);
+  const { isEnrolled } = await getUserEnrollmentStatus(type);
 
 
   if (!course) {
@@ -39,7 +42,7 @@ const CourseDetailPage = async ({ params }: CourseDetailsPageProps) => {
             {/* Image container */}
             <div className="relative w-full h-64 md:h-[420px]">
               <Image
-                src="/frontend-system-design.png"
+                src="/master-java.png"
                 alt={course.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 700px"
@@ -85,7 +88,7 @@ const CourseDetailPage = async ({ params }: CourseDetailsPageProps) => {
             {/* First section */}
             <div>
               <h2 className="text-lg font-semibold">What you&apos;ll learn</h2>
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-2">
                 {course.what_you_ll_learn.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
                     <span className="flex-shrink-0 mt-0.5">
@@ -102,7 +105,7 @@ const CourseDetailPage = async ({ params }: CourseDetailsPageProps) => {
             {/* Second section */}
             <div className="pt-6">
               <h2 className="text-lg font-semibold">Course Price</h2>
-              <ul className="mt-4">
+              <ul className="mt-2">
                 {course.course_price.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
                     <span className="flex-shrink-0 mt-0.5">
@@ -119,8 +122,8 @@ const CourseDetailPage = async ({ params }: CourseDetailsPageProps) => {
             {/* Third section */}
             <div className="pt-6">
               <h2 className="text-lg font-semibold">This course includes</h2>
-              <ul className="mt-4">
-                {course.course_price.map((item, idx) => (
+              <ul className="mt-2">
+                {course.this_course_includes.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
                     <span className="flex-shrink-0 mt-0.5">
                       <CheckIcon />
@@ -134,12 +137,11 @@ const CourseDetailPage = async ({ params }: CourseDetailsPageProps) => {
             </div>
 
             {/* Start learning button */}
-            <Link
-              href={`/courses/${String(course?.type)}/start-learning`}
-              className="block w-full text-center px-4 py-3 mt-4 rounded-lg bg-slate-100 text-slate-900 font-medium text-sm hover:bg-slate-200 transition-colors"
-            >
-              Start Learning Now
-            </Link>
+            <EnrollButton
+              courseType={String(course?.type)}
+              isEnrolled={isEnrolled}
+              resumeLink={`/courses/${String(course?.type)}/start-learning`}
+            />
           </div>
 
           {/* Small Meta Card */}

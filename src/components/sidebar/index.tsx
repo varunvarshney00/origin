@@ -3,11 +3,12 @@
 import {
   Home,
   // Menu,
-  // PenLine,
+  PenLine,
   TvMinimal,
   LogOut,
   LogIn,
   UserPlus,
+  Codesandbox,
 } from "lucide-react";
 import { JSX, useState } from "react";
 import { useSession, signOut } from "@/lib/auth-client";
@@ -26,12 +27,12 @@ const SidebarLogo = ({ isOpen }: { isOpen: boolean }) => (
   <Link href="/" className="flex items-center gap-x-2 p-5 justify-center">
     <Image
       src="/home/phoenix.png" // Using the phoenix logo from your other component
-      alt="Origin Logo"
+      alt="XorThax Logo"
       width={24}
       height={24}
       className="invert"
     />
-    {isOpen && <span className="text-white font-bold text-lg">Okay Got It?</span>}
+    {isOpen && <span className="text-white font-bold text-lg">XorThax</span>}
   </Link>
 );
 
@@ -54,11 +55,16 @@ const Sidebar: React.FC = () => {
       label: "Courses",
       path: "/courses",
     },
-    // {
-    //   icon: <PenLine size={iconSize} />,
-    //   label: "Blogs",
-    //   path: "/blogs",
-    // },
+    {
+      icon: <PenLine size={iconSize} />,
+      label: "Blogs",
+      path: "/blogs",
+    },
+    {
+      icon: <Codesandbox size={iconSize} />,
+      label: "Request a course",
+      path: "/request-a-course",
+    },
   ];
 
   const handleSignOut = () => {

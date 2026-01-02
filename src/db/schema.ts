@@ -109,8 +109,8 @@ export const videos = pgTable(
   {
     id: serial("id").primaryKey(),
     title: text("title").notNull(),
-    youtubeUrl: text("youtube_url").notNull(), // e.g., https://www.youtube.com/watch?v=...
-    youtubeId: text("youtube_id").notNull(), // e.g., _rTCzxg6VmM
+    youtubeUrl: text("youtube_url").notNull(),
+    youtubeId: text("youtube_id").notNull(),
     courseId: integer("course_id")
       .notNull()
       .references(() => courses.id, { onDelete: "cascade" }),
@@ -142,10 +142,22 @@ export const userWatchedVideos = pgTable(
 // NEW: Define relations for easier querying
 export const userRelations = relations(user, ({ many }) => ({
   watchedVideos: many(userWatchedVideos),
+  enrolledCourses: many(userEnrolledCourses),
 }));
 
-export const videoRelations = relations(videos, ({ many }) => ({
+// Update Video Relations
+export const videoRelations = relations(videos, ({ one, many }) => ({
+  course: one(courses, {
+    fields: [videos.courseId],
+    references: [courses.id],
+  }),
   watchEntries: many(userWatchedVideos),
+}));
+
+// Define Course Relations (Connects courses to videos and enrollments)
+export const coursesRelations = relations(courses, ({ many }) => ({
+  videos: many(videos),
+  enrolledUsers: many(userEnrolledCourses),
 }));
 
 export const userWatchedVideosRelations = relations(
@@ -161,3 +173,15 @@ export const userWatchedVideosRelations = relations(
     }),
   })
 );
+
+export const userEnrolledCourses = pgTable(
+  "user-enrolled-courses",
+  {
+    userId: text("user-id").notNull().references(() => user.id, { onDelete: "cascade" }),
+    courseId: integer("course_id").notNull().references(() => courses.id, { onDelete: "cascade" }),
+    enrolledAt: timestamp("enrolled_at").defaultNow().notNull(),
+  },
+  (t) => ({
+    pk: primaryKey({ columns: [t.userId, t.courseId] }),
+  })
+)

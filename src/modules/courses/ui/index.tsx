@@ -18,6 +18,10 @@ type CoursesCardProps = {
   price: number;
   originalPrice: number;
   isBestseller?: boolean;
+  isEnrolled?: boolean;
+  progress?: number;
+  watchedCount?: number;
+  totalVideos?: number;
 };
 
 const CoursesCardComponent: React.FC<CoursesCardProps> = ({
@@ -34,6 +38,10 @@ const CoursesCardComponent: React.FC<CoursesCardProps> = ({
   // price,
   // originalPrice,
   isBestseller,
+  isEnrolled,
+  progress,
+  watchedCount,
+  totalVideos,
 }) => {
   const router = useRouter();
 
@@ -84,11 +92,23 @@ const CoursesCardComponent: React.FC<CoursesCardProps> = ({
         </div>
 
         {/* Bestseller */}
-        {isBestseller && (
-          <span className="inline-block mt-2 text-[10px] uppercase font-semibold bg-neutral-100 text-neutral-900 px-2 py-0.5 rounded">
-            Bestseller
-          </span>
+        {isEnrolled ? (
+          <div className="flex items-start gap-1 mt-2">
+            <span className="inline-block text-[10px] uppercase font-semibold bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded">
+              {progress}% Completed
+            </span>
+            <span className="inline-block text-[10px] uppercase font-semibold bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded">
+              {watchedCount}/{totalVideos} Lectures
+            </span>
+          </div>
+        ) : (
+          isBestseller && (
+            <span className="inline-block mt-2 text-[10px] uppercase font-semibold bg-neutral-100 text-neutral-900 px-2 py-0.5 rounded">
+              Bestseller
+            </span>
+          )
         )}
+
       </div>
 
       {/* --- Price --- */}
