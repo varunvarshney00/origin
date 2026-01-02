@@ -28,58 +28,45 @@ const Header = () => {
       {/* MAIN LOGO */}
       <Link
         href="/"
-        className="text-xl font-semibold flex justify-center items-center space-x-2"
+        className="text-sm md:text-base lg:text-lg font-semibold flex justify-center items-center space-x-2"
       >
         <Image
           src="https://xorthax-main-logo-asset.s3.us-east-1.amazonaws.com/Nor.png"
           alt="XorThax"
           width={40}
           height={40}
-          className="invert"
+          className="invert w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
         />
         <span className="text-white mb-1">XorThax</span>
       </Link>
 
       {/* HEADER BUTTONS AND USER PROFILE */}
-      <div className="flex items-center space-x-5">
-        {/* PRICING REMOVED FOR NOW*/}
-        {/* <Link
-          href="#"
-          className="group text-[#808080] border-3 border-black flex font-mono font-bold hover:bg-[#1F1F23] py-1 px-5 rounded-4xl hover:text-white transition-colors duration-300 ease-in-out hover:border-[#1F1F23] hover:border-3"
-        >
-          <Image
-            src="/home/pricing.png"
-            alt="pricing"
-            width={23}
-            height={18}
-            className="mr-2 filter invert-50 transition duration-300 ease-in-out group-hover:invert-100"
-          />
-          Pricing
-        </Link> */}
+      <div className="flex items-center gap-2 sm:gap-3 md:gap-5">
 
         {/* STATE1: SESSION IS LOADING */}
         {isPending == true && (
-          <div className="h-8 w-36 bg-gray-800 rounded-md animate-pulse" />
+          <div className="h-8 w-24 sm:w-36 bg-gray-800 rounded-md animate-pulse" />
         )}
 
         {/* STATE2: USER IS LOGGED IN */}
         {isPending == false && user && (
           <>
-            <div className="flex items-center space-x-3 group">
+            <div className="flex items-center gap-2 sm:gap-3 md:gap-5 group">
               <Image
                 src={user.image || "/home/user.png"}
                 alt={user.name || "You"}
                 width={30}
                 height={30}
-                className="invert rounded-full"
+                className="invert rounded-full w-7 h-7 sm:w-8 sm:h-8"
               />
-              <span className="text-white font-mono">{user.name}</span>
+              <span className="hidden sm:inline text-white font-mono text-sm">{user.name}</span>
             </div>
             <Button
               onClick={handleSignOut}
               className="bg-transparent text-[#808080] font-mono font-bold border transition-colors duration-300 ease-in-out border-[#1F1F23] rounded-xl py-1 px-5 hover:border-[#71717A] hover:bg-[#1F1F23] hover:text-white"
             >
-              Sign Out
+              <span className="hidden sm:inline">Sign Out</span>
+              <span className="sm:hidden">↪</span>
             </Button>
           </>
         )}
