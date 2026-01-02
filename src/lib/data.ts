@@ -11,6 +11,7 @@ export type Course = {
   course_content: Record<string, string[]>,
   what_you_ll_learn: string[]
   course_price: string[]
+  this_course_includes: string[]
 };
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";

@@ -13,9 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next gen Learning Platform",
+  title: "XorThax - Next gen Learning Platform",
   description: "The next generation learning platform for students.",
 };
+
+import { ReduxProvider } from "@/components/providers/redux-provider";
 
 export default function RootLayout({
   children,
@@ -28,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        {children}
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );

@@ -181,7 +181,7 @@ export const SignInView = () => {
 
           <div className="bg-radial from-green-700 to-green-900 relative hidden md:flex flex-col gap-y-4 items-center justify-center">
             {/* <img src="/logo.svg" alt="Image" className="h-[92px] w-[92px]" /> */}
-            <p className="text-2xl font-semibold text-white">The Origin</p>
+            <p className="text-2xl font-semibold text-white">XorThax</p>
           </div>
         </CardContent>
       </Card>

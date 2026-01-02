@@ -32,12 +32,12 @@ const Header = () => {
       >
         <Image
           src="/home/phoenix.png"
-          alt="Origin"
+          alt="XorThax"
           width={19}
           height={19}
           className="invert"
         />
-        <span className="text-white">Origin</span>
+        <span className="text-white">XorThax</span>
       </Link>
 
       {/* HEADER BUTTONS AND USER PROFILE */}
