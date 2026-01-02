@@ -22,6 +22,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "img.youtube.com",
       },
+      {
+        protocol: "https",
+        hostname: "xorthax-main-logo-asset.s3.us-east-1.amazonaws.com",
+      }
     ],
   },
 };
