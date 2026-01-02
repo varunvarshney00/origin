@@ -28,16 +28,16 @@ const Header = () => {
       {/* MAIN LOGO */}
       <Link
         href="/"
-        className="text-xl font-semibold flex items-center space-x-2"
+        className="text-xl font-semibold flex justify-center items-center space-x-2"
       >
         <Image
-          src="/home/phoenix.png"
+          src="https://xorthax-main-logo-asset.s3.us-east-1.amazonaws.com/Nor.png"
           alt="XorThax"
-          width={19}
-          height={19}
+          width={40}
+          height={40}
           className="invert"
         />
-        <span className="text-white">XorThax</span>
+        <span className="text-white mb-1">XorThax</span>
       </Link>
 
       {/* HEADER BUTTONS AND USER PROFILE */}
