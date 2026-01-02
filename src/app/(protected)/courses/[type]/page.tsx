@@ -3,7 +3,6 @@ import { getCourseByType } from "@/lib/data";
 import Image from "next/image";
 import Accordion from "@/modules/courses/components/accordion";
 import CheckIcon from "@/modules/courses/components/checkIcon";
-import Link from "next/link";
 import { getUserEnrollmentStatus } from "@/lib/actions/user-course";
 import { EnrollButton } from "@/modules/courses/ui/enroll-button";
 
