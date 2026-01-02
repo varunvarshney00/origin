@@ -4,7 +4,7 @@ import React from "react";
 
 const App = () => {
   return (
-    <div>
+    <div className="relative min-h-dvh bg-black">
       {/* The Header is now positioned absolutely within its parent */}
       <div className="absolute top-0 left-0 w-full z-10">
         <Header />
