@@ -52,7 +52,7 @@ export default function FireHeatmap({
             animationData={lottieAnimationData}
             loop
             autoplay
-            style={{ width: "65%", height: "65%" }}
+            style={{ width: "65%", height: "65%", filter: "hue-rotate(220deg) saturate(150%)" }}
           />
         </div>
       );
@@ -79,27 +79,28 @@ export default function FireHeatmap({
   };
 
   return (
-    <div className="p-4 rounded-lg bg-neutral-900">
+    <div className="p-4 rounded-lg bg-neutral-900 border-2 w-260">
       {/* The top of heat map */}
-      <div className="flex items-center gap-4 mb-3">
+      <div className="flex items-center gap-1 mb-3">
         <h3 className="text-sm text-gray-300">Contributions</h3>
         <div className="text-xs text-gray-400">Days you were on fire:</div>
         <div className="ml-auto text-xs text-gray-400">Less</div>
-        <div className="w-4 h-4 bg-[#0f1720] ml-2 rounded-sm" />
-        <div className="w-4 h-4 bg-[#064e3b] ml-1 rounded-sm" />
-        <div className="w-4 h-4 bg-[#065f46] ml-1 rounded-sm" />
-        <div className="w-4 h-4 bg-[#16a34a] ml-1 rounded-sm" />
-        <div className="w-4 h-4 bg-[#22c55e] ml-1 rounded-sm flex items-center justify-center">
+        <div className="w-4 h-4 bg-[#1e1e1e] ml-2 rounded-sm" />
+        <div className="w-4 h-4 bg-[#1e40af] ml-1 rounded-sm" />
+        <div className="w-4 h-4 bg-[#3b82f6] ml-1 rounded-sm" />
+        <div className="w-4 h-4 bg-[#60a5fa] ml-1 rounded-sm" />
+        <div className="w-4 h-4 bg-[#000000] ml-1 rounded-sm flex items-center justify-center">
           <Lottie
             animationData={lottieAnimationData}
             loop
             autoplay
-            style={{ width: "110%", height: "110%" }}
+            style={{ width: "110%", height: "110%", filter: "hue-rotate(220deg) saturate(150%)" }}
           />
         </div>
         <div className="text-xs text-gray-400 ml-2">More</div>
       </div>
 
+      {/* Grid squares */}
       <div
         className="inline-flex"
         style={{ gap: `${gap}px`, alignItems: "flex-start" }}
@@ -160,7 +161,7 @@ export default function FireHeatmap({
 
                 // If we're here, it's a valid day. Render the full cell.
                 const bgClass = colorFor(cell.count);
-                const showFire = cell.count >= 2;
+                const showFire = cell.count >= 4;
                 return (
                   <div
                     key={cell.date}

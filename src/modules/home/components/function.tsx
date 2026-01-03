@@ -18,12 +18,12 @@ export function daysBetween(a: Date, b: Date) {
   return Math.round((b.getTime() - a.getTime()) / (1000 * 60 * 60 * 24));
 }
 
-const threshold = 10;
+const threshold = 4;
 
 export function colorFor(count: number): string {
-  if (!count || count <= 0) return "bg-[#242424]";
-  if (count == 1) return "bg-[#3A3A3A]";
-  if (count == 2) return "bg-[#5E5E5E]";
-  if (count > 2 && count <= threshold) return "bg-[#A0A0A0]";
-  return "bg-[#ff0000] relative overflow-hidden will-change-transform fire-cell";
+  if (!count || count <= 0) return "bg-[#1e1e1e]"; // Empty: slightly lighter than black for visibility
+  if (count == 1) return "bg-[#1e40af]"; // Blue 800 (Brighter than before)
+  if (count == 2) return "bg-[#3b82f6]"; // Blue 500
+  if (count == 3) return "bg-[#60a5fa]"; // Blue 400
+  return "bg-[#000000] relative overflow-hidden will-change-transform fire-cell"; // Black behind fire
 }

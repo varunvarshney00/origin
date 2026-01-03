@@ -25,10 +25,11 @@ export async function GET() {
     const yearEndDate = new Date(currentYear, 11, 31);
 
     try {
+      // Fetch raw timestamps instead of grouping in DB
+      
       const userActivity = await db
         .select({
-          date: sql<string>`TO_CHAR(${userWatchedVideos.createdAt}, 'YYYY-MM-DD')`,
-          count: count(userWatchedVideos.videoId),
+          createdAt: userWatchedVideos.createdAt,
         })
         .from(userWatchedVideos)
         .where(
@@ -37,12 +38,33 @@ export async function GET() {
             gte(userWatchedVideos.createdAt, yearStartDate),
             lte(userWatchedVideos.createdAt, yearEndDate)
           )
-        )
-        .groupBy(sql`TO_CHAR(${userWatchedVideos.createdAt}, 'YYYY-MM-DD')`);
+        );
 
-      const formattedData = userActivity.map((day) => ({
-        date: day.date,
-        count: Number(day.count),
+      // Aggregate in JavaScript with Timezone Adjustment
+      const activityMap: Record<string, number> = {};
+
+      userActivity.forEach((log) => {
+        if (!log.createdAt) return;
+
+        // Create a date object from the UTC timestamp
+        const dateObj = new Date(log.createdAt);
+
+        // Add 5 hours and 30 minutes for IST (Indian Standard Time)
+        // 5.5 hours * 60 minutes * 60 seconds * 1000 milliseconds
+        const istOffsetMs = 5.5 * 60 * 60 * 1000;
+        const istDate = new Date(dateObj.getTime() + istOffsetMs);
+
+        // Format to YYYY-MM-DD
+        const dateStr = istDate.toISOString().split("T")[0];
+
+        // Increment count for this date
+        activityMap[dateStr] = (activityMap[dateStr] || 0) + 1;
+      });
+
+      // Convert map to array format expected by the frontend
+      const formattedData = Object.entries(activityMap).map(([date, count]) => ({
+        date,
+        count,
       }));
 
       return NextResponse.json(formattedData);
