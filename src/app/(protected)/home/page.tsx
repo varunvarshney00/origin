@@ -2,7 +2,7 @@
 
 import Sidebar from "@/components/sidebar";
 import FireHeatmap from "@/modules/home/components/FireHeatmap";
-import type { Day } from "@/modules/home/components/FireHeatmap";
+import type { Day } from "@/modules/home/components/types";
 import Fire2 from "../../../../public/animations/Fire2.json";
 import React from "react";
 import { useSession } from "@/lib/auth-client";
@@ -34,7 +34,7 @@ export default function Page() {
         <main className="flex-1">
           {/* Added 'grid' and 'grid-cols-1 lg:grid-cols-3' so col-span works properly */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 m-5">
-            
+
             {/* Column 1 narrow, The user profile */}
             <div className="col-span-1 flex flex-col gap-6">
               {/* STATE 1: SESSION IS LOADING */}
@@ -111,7 +111,7 @@ export default function Page() {
                 <div className="w-full bg-[#121212] border border-neutral-800 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.5)] ring-1 ring-white/5 overflow-hidden">
                   <div className="p-3 sm:p-6">
                     <div className="rounded-xl border border-neutral-800 bg-[#0a0a0a]/50">
-                      
+
                       {/* SCROLL CONTAINER CONFIGURATION:
                          1. overflow-x-auto: Enables scroll.
                          2. Removed 'no-scrollbar' class.

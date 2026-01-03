@@ -12,8 +12,8 @@ export type Day = { date: string; count: number };
 
 export interface FireHeatmapProps {
   data: Day[];
-  threshold?: number;
   cellSize?: number;
   gap?: number;
-  lottieAnimationData?: SimpleLottieProps | null;
+  threshold?: number;
+  lottieAnimationData?: SimpleLottieProps | any;
 }
