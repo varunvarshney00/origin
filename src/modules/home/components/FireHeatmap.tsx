@@ -6,7 +6,6 @@ import { Lottie } from "./smallComponents";
 
 export default function FireHeatmap({
   data = [],
-  // threshold = 10,
   cellSize = 16,
   gap = 2,
   lottieAnimationData = null,
@@ -46,7 +45,7 @@ export default function FireHeatmap({
   const Fire = ({ size = 18 }: { size?: number }) => {
     if (lottieAnimationData) {
       return (
-        <div style={{ width: size, height: size, pointerEvents: "none" }}>
+        <div style={{ width: size, height: size, pointerEvents: "none", }}>
           {/* Lottie is dynamically imported and typed above */}
           <Lottie
             animationData={lottieAnimationData}

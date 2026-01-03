@@ -25,7 +25,7 @@ export default function Page() {
     <div className="bg-[#09090B] w-full min-h-screen text-gray-200">
       <div className="flex-1 flex-col">
         {/* Left sidebar */}
-        <div className="w-full flex justify-between p-5">
+        <div className="w-full flex justify-between p-5 border-2">
           <Link
             href="/"
             className="text-sm md:text-base lg:text-lg font-semibold flex justify-center items-center space-x-2"
@@ -144,7 +144,7 @@ export default function Page() {
                            min-w-[800px] ensures the content is wider than a phone screen,
                            forcing the browser to show the scrollbar.
                         */}
-                        <div className="min-w-[800px] sm:min-w-full p-2 ">
+                        <div className="min-w-[800px] sm:min-w-full ">
                           <FireHeatmap
                             data={heatmapData}
                             lottieAnimationData={Fire2}

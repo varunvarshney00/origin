@@ -1,39 +1,38 @@
+
 import { notFound } from "next/navigation";
+import { coursesData } from "@/constant/coursesData";
 
 export type Course = {
   imageUrl: string;
   level: string;
-  lectures: number;
+  lectures: string | number;
   title: string;
   authors: string;
   description: string;
   type: string;
-  course_content: Record<string, string[]>,
-  what_you_ll_learn: string[]
-  course_price: string[]
-  this_course_includes: string[]
+  course_content: Record<string, string[]>;
+  what_you_ll_learn: string[];
+  course_price: string[];
+  this_course_includes?: string[];
 };
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
 
 // function to get a single course by its type
 export async function getCourseByType(type: string): Promise<Course> {
-  const res = await fetch(`${API_BASE_URL}/courses/${type}`);
+  // Simulate async delay if needed, or just return directly
+  // const res = await fetch(`${API_BASE_URL}/courses/${type}`);
+  const course = coursesData.find((c) => c.type === type) as unknown as Course;
 
-  if (!res.ok) notFound();
+  if (!course) notFound();
 
-  return res.json();
+  return course;
 }
 
 // function to get all courses
 export async function getAllCourses(): Promise<Course[]> {
-  const res = await fetch(`${API_BASE_URL}/courses`, {
-    next: { revalidate: 3600 },
-  });
+  // const res = await fetch(`${API_BASE_URL}/courses`, {
+  //   next: { revalidate: 3600 },
+  // });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch courses");
-  }
-
-  return res.json();
+  return coursesData as unknown as Course[];
 }
+
