@@ -8,6 +8,7 @@ import React from "react";
 import { useSession } from "@/lib/auth-client";
 import Image from "next/image";
 import useSWR from "swr";
+import Link from "next/link";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -24,11 +25,25 @@ export default function Page() {
     <div className="bg-[#09090B] w-full min-h-screen text-gray-200">
       <div className="flex-1 flex-col">
         {/* Left sidebar */}
-        <div className="w-70 bg-red-500">
-          <div className="w-71 bg-green-500">
+        <div className="w-full flex justify-between p-5">
+          <Link
+            href="/"
+            className="text-sm md:text-base lg:text-lg font-semibold flex justify-center items-center space-x-2"
+          >
+            <Image
+              src="https://xorthax-main-logo-asset.s3.us-east-1.amazonaws.com/Nor.png"
+              alt="XorThax"
+              width={40}
+              height={40}
+              className="invert w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
+            />
+            <span className="text-white">XorThax</span>
+          </Link>
+          <div className="">
             <Sidebar />
           </div>
         </div>
+
 
         {/* Main Content */}
         <main className="flex-1">
@@ -108,28 +123,28 @@ export default function Page() {
 
               {/* DATA STATE */}
               {heatmapData && (
-                <div className="w-full bg-[#121212] border border-neutral-800 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.5)] ring-1 ring-white/5 overflow-hidden">
-                  <div className="p-3 sm:p-6">
-                    <div className="rounded-xl border border-neutral-800 bg-[#0a0a0a]/50">
+                <div className="w-full border border-neutral-800 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.5)] ring-1 ring-white/5 overflow-hidden">
+                  <div className=" sm:p-6 ">
+                    <div className="rounded-xl border border-neutral-800 w-full p-2">
 
                       {/* SCROLL CONTAINER CONFIGURATION:
                          1. overflow-x-auto: Enables scroll.
                          2. Removed 'no-scrollbar' class.
                          3. Added webkit scrollbar styling (standard on Desktop/Android).
                       */}
-                      <div className="w-full overflow-x-auto pb-3
+                      <div className="w-full overflow-x-auto pb-2
                         scrollbar-thin scrollbar-thumb-neutral-700 scrollbar-track-transparent
                         hover:scrollbar-thumb-neutral-600
                         [&::-webkit-scrollbar]:h-2
                         [&::-webkit-scrollbar-track]:bg-transparent
                         [&::-webkit-scrollbar-thumb]:bg-neutral-700
-                        [&::-webkit-scrollbar-thumb]:rounded-full"
+                        [&::-webkit-scrollbar-thumb]:rounded-full "
                       >
                         {/* FORCE WIDTH WRAPPER:
                            min-w-[800px] ensures the content is wider than a phone screen,
                            forcing the browser to show the scrollbar.
                         */}
-                        <div className="min-w-[800px] sm:min-w-full p-2">
+                        <div className="min-w-[800px] sm:min-w-full p-2 ">
                           <FireHeatmap
                             data={heatmapData}
                             lottieAnimationData={Fire2}

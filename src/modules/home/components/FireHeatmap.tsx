@@ -79,7 +79,7 @@ export default function FireHeatmap({
   };
 
   return (
-    <div className="p-4 rounded-lg bg-neutral-900 border-2 w-260">
+    <div className="p-4 rounded-lg bg-neutral-900 w-258">
       {/* The top of heat map */}
       <div className="flex items-center gap-1 mb-3">
         <h3 className="text-sm text-gray-300">Contributions</h3>

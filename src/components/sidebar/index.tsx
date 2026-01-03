@@ -91,10 +91,10 @@ const Sidebar: React.FC = () => {
       {/* Visible only on mobile (lg:hidden) */}
       <button
         onClick={() => setIsMobileOpen(true)}
-        className="fixed top-4 left-4 z-40 p-2 bg-[#1f1f1f] text-white rounded-md lg:hidden"
+        className=" p-2 bg-[#1f1f1f] text-white rounded-md lg:hidden"
         aria-label="Open Menu"
       >
-        <Menu size={24} />
+        <Menu size={18} />
       </button>
 
       {/* --- MOBILE OVERLAY --- */}
@@ -121,7 +121,7 @@ const Sidebar: React.FC = () => {
           ${isMobileOpen ? "translate-x-0" : "-translate-x-[150%]"} 
           
           /* Desktop Logic: Always visible (reset translate) */
-          lg:translate-x-0 
+          lg:translate-x-0  
         `}
       >
         {/* Inner Glass Container */}
