@@ -119,21 +119,23 @@ const CourseDetailPage = async ({ params }: CourseDetailsPageProps) => {
             </div>
 
             {/* Third section */}
-            <div className="pt-6">
-              <h2 className="text-lg font-semibold">This course includes</h2>
-              <ul className="mt-2">
-                {course.this_course_includes.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <span className="flex-shrink-0 mt-0.5">
-                      <CheckIcon />
-                    </span>
-                    <p className="text-sm text-neutral-400 leading-relaxed">
-                      {item}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {course.this_course_includes && course.this_course_includes.length > 0 && (
+              <div className="pt-6">
+                <h2 className="text-lg font-semibold">This course includes</h2>
+                <ul className="mt-2">
+                  {course.this_course_includes.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <span className="flex-shrink-0 mt-0.5">
+                        <CheckIcon />
+                      </span>
+                      <p className="text-sm text-neutral-400 leading-relaxed">
+                        {item}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Start learning button */}
             <EnrollButton
