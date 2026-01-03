@@ -18,7 +18,7 @@ export function daysBetween(a: Date, b: Date) {
   return Math.round((b.getTime() - a.getTime()) / (1000 * 60 * 60 * 24));
 }
 
-const threshold = 4;
+// const threshold = 4;
 
 export function colorFor(count: number): string {
   if (!count || count <= 0) return "bg-[#1e1e1e]"; // Empty: slightly lighter than black for visibility

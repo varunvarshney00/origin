@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { db } from "@/db/index";
 import { userWatchedVideos } from "@/db/schema";
-import { and, count, eq, gte, lte } from "drizzle-orm";
-import { sql } from "drizzle-orm";
+import { and, eq, gte, lte } from "drizzle-orm";
+// import { sql } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
