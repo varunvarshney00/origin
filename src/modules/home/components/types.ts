@@ -15,5 +15,5 @@ export interface FireHeatmapProps {
   cellSize?: number;
   gap?: number;
   threshold?: number;
-  lottieAnimationData?: SimpleLottieProps | object;
+  lottieAnimationData?: SimpleLottieProps | null;
 }
